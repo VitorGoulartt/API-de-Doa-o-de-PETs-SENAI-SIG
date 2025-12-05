@@ -62,13 +62,16 @@ public class ServicePet {
         return null;
 
     }
-    public void DeletarPet(int id){
-        ModelPet pet = repositoryPet.findById(id);
-        if(pet != null){
-            
-        }
-        
+    public void DeletarPet(int id) {
+    repositoryPet.deleteById(id);
+    }
+    public List<ModelPet> ListarPetsDisponiveis(){
+        ModelPet pet = repositoryPet.findAllByDisponivel(true);
         
     }
+        
+        
+        
+    
 
 }
