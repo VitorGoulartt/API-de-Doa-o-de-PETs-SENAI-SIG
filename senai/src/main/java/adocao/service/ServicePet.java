@@ -35,14 +35,14 @@ public class ServicePet {
         Optional<ModelPet> pets = repositoryPet.findById(id);
         if(pets.isPresent()){
             ModelPet petNovo = pets.get();
-            pets.setNome(petNovo.getNome);
-            pets.setEspecie(petNovo.getEspecie);
-            pets.setRaca(petNovo.getRaca);
-            pets.setIdade(petNovo.getIdade);
-            pets.setPorte(petNovo.getPorte);
-            pets.setDescricao(petNovo.getDescricao);
-            pets.setVacinas(petNovo.getVacinas);
-            pets.setDisponivel(petNovo.getDisponivel);
+            petNovo.setNome(pet.getNome());
+            petNovo.setEspecie(pet.getEspecie());
+            petNovo.setRaca(pet.getRaca());
+            petNovo.setIdade(pet.getIdade());
+            petNovo.setPorte(pet.getPorte());
+            petNovo.setDescricao(pet.getDescricao());
+            petNovo.setVacinas(pet.getVacinas());
+            petNovo.setDisponivel(pet.getDisponivel());
            
            
             return repositoryPet.save(petNovo);
@@ -62,11 +62,19 @@ public class ServicePet {
         return null;
 
     }
-    public void DeletarPet(int id) {
-    repositoryPet.deleteById(id);
+    public ModelPet DeletarPet(int id) {
+        Optional<ModelPet> pet = repositoryPet.findById(id);
+        if(pet.isPresent()){
+            
+            repositoryPet.deleteById(id);
+            return pet.get();
+        }
+        return null;
+    
     }
     public List<ModelPet> ListarPetsDisponiveis(){
-        ModelPet pet = repositoryPet.findAllByDisponivel(true);
+        List<ModelPet> pet = repositoryPet.findAllByDisponivel(true);
+        return pet;
         
     }
         

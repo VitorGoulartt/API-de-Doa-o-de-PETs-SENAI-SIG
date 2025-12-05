@@ -22,5 +22,7 @@ public interface RepositoryPet extends JpaRepository<ModelPet, Integer>{
                                 @Param("idade") Integer idade,
                                 @Param("porte") String port,
                                 @Param("condicao") String condicao );
+                                
+    List<ModelPet> findAllByDisponivel(boolean Disponivel);
 
 }
