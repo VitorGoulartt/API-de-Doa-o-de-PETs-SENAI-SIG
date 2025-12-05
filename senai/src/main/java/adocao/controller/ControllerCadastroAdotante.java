@@ -13,18 +13,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import adocao.models.ModelAdotante;
+import adocao.service.ServiceAdotante;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 
 @CrossOrigin
 @RequestMapping("/api/adotantes")
 @RestController
 public class ControllerCadastroAdotante {
+
     @Autowired
     private ServiceAdotante serviceAdotante;
 
     @PostMapping
     public ResponseEntity<ModelAdotante> RegistrarAdotante(@RequestBody ModelAdotante adotante){
-        ModelAdotante adotantes = serviceAdotante.RegistrarAdotante(adotante);
+        ModelAdotante adotantes = serviceAdotante.registrarAdotante(adotante);
         if(adotantes != null){
             return ResponseEntity.status(HttpStatus.CREATED).body(adotantes);
         }
@@ -42,8 +44,8 @@ public class ControllerCadastroAdotante {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<List<ModelAdotante>> listarAdotantesId(@PathVariable int id){
-        List<ModelAdotante> adotantes = serviceAdotante.listarAdotantesId(id);
+    public ResponseEntity<ModelAdotante> listarAdotantesId(@PathVariable int id){
+        ModelAdotante adotantes = serviceAdotante.listarAdotantesId(id);
         return ResponseEntity.ok(adotantes);
     }
 

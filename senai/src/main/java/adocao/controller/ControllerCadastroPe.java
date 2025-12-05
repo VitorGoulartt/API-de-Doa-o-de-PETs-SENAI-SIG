@@ -80,9 +80,9 @@ public class ControllerCadastroPe {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> DeletarPet(@PathVariable int id){
-        boolean deletado = servicePet.DeletarPet(id);
-        if(deletado == true){
+    public ResponseEntity<ModelPet> DeletarPet(@PathVariable int id){
+        ModelPet deletado = servicePet.DeletarPet(id);
+        if(deletado != null){
             return ResponseEntity.noContent().build();
         }
         return ResponseEntity.status(HttpStatus.NOT_MODIFIED).build();
