@@ -27,12 +27,12 @@ public class ModelAdocao {
     private int id; 
 
     @OneToMany
-    @Column
+    @Column()
     private ModelPet fk_pet;
 
     @OneToMany
     @Column
-    private ModelAdotante fk_adotante;
+    private ModelAdotante fk_adotante; 
     
     @Column
     private String dt_adocao;
