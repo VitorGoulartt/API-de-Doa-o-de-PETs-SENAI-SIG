@@ -2,6 +2,8 @@ package adocao.models;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -22,21 +24,31 @@ public class ModelAdocao {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private int id; 
 
     @OneToMany
     @Column
-    private ModelPet petId;
+    private ModelPet fk_pet;
 
     @OneToMany
     @Column
-    private ModelAdotante adotanteId;
+    private ModelAdotante fk_adotante;
     
     @Column
-    private String dataAdocao;
+    private String dt_adocao;
 
     @Column
-    private String observacoes;
+    private String OBSERVACOES;
+
+    @Column
+    private String motivo_adotante;
+
+    @Column
+    private String motivo_doador;
+
+    @Column(name = "status_adocao", nullable = true)
+    @Enumerated(EnumType.STRING)
+    private StatusAdocao StatusAdocao;
 
    
 }

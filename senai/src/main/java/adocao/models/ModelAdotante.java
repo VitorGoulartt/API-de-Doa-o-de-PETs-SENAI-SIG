@@ -1,5 +1,6 @@
 package adocao.models;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -24,12 +25,21 @@ public class ModelAdotante {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @Column
     private String nome;
 
+    @Column
     private String cpf;
+
+    @Column
     private String telefone;
+
+    @Column
     private String endereco;
+
+    @Column
     private String email;
+
     @OneToMany
     private ModelPet petAdotados;
 

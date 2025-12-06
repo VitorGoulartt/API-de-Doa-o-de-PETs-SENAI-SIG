@@ -1,5 +1,6 @@
 package adocao.models;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -22,20 +23,28 @@ public class ModelPet {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @Column
     private String nome;
 
+    @Column
     private String especie;
 
+    @Column
     private String raca;
 
+    @Column
     private int idade;
 
+    @Column
     private String porte;
 
+    @Column
     private String descricao;
 
+    @Column
     private String vacinas;
 
+    @Column
     private boolean disponivel;
     
 
