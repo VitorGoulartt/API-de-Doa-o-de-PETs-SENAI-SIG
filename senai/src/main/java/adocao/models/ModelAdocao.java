@@ -1,5 +1,6 @@
 package adocao.models;
 
+import adocao.enums.StatusAdocao;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -33,6 +34,10 @@ public class ModelAdocao {
     @OneToMany
     @Column
     private ModelAdotante fk_adotante; 
+
+    @OneToMany
+    @Column
+    private  ModelDoador fk_doador;
     
     @Column
     private String dt_adocao;

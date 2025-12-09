@@ -1,32 +1,27 @@
 package adocao.models;
 
+import java.time.LocalDateTime;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
+@Table(name = "doadores")
 @Entity
-@Table(name = "adotantes")
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
-
-public class ModelAdotante {
+public class ModelDoador {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue( strategy = GenerationType.IDENTITY)
     private int id;
 
     @Column
     private String nome;
+
+    @Column 
+    private String cpf;
 
     @Column
     private String telefone;
@@ -34,7 +29,16 @@ public class ModelAdotante {
     @Column
     private String email;
 
-    @OneToMany
-    private ModelPet petAdotados;
+    @Column
+    private LocalDateTime dt_registro;
+
+    @Column
+    private LocalDateTime dt_update;
+
+    @Column
+    private String dt_nasciemnto;
+
+    @Column
+    private Model
 
 }

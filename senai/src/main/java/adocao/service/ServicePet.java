@@ -36,7 +36,7 @@ public class ServicePet {
         if(pets.isPresent()){
             ModelPet petNovo = pets.get();
             petNovo.setNome(pet.getNome());
-            petNovo.setEspecie(pet.getEspecie());
+           //petNovo.setEspecie(pet.getEspecie());
             petNovo.setRaca(pet.getRaca());
             petNovo.setIdade(pet.getIdade());
             petNovo.setPorte(pet.getPorte());
@@ -76,6 +76,10 @@ public class ServicePet {
         List<ModelPet> pet = repositoryPet.findAllByDisponivel(true);
         return pet;
         
+    }
+    public List<ModelPet> ListarPetsEsp(List<Integer> id){
+        List<ModelPet> especie = repositoryPet.findAllById(id);
+        return especie;
     }
         
         

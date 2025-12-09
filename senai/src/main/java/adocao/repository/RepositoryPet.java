@@ -12,7 +12,7 @@ import adocao.models.ModelPet;
 @Repository
 public interface RepositoryPet extends JpaRepository<ModelPet, Integer>{
 
-    @Query("SELECT p FROM ModelPet p" +
+    @Query("SELECT p FROM ModelPet p" + 
         "WHERE (:especie IS NULL OR LOWER(p.especie) LIKE LOWER(CONCAT('%', :especie, '%'))" +
         "AND (:idade IS NULL  OR p.idade = :idade)" +
         "AND (:porte  IS NULL  OR p.porte = :porte)" +
@@ -20,7 +20,7 @@ public interface RepositoryPet extends JpaRepository<ModelPet, Integer>{
     )
     List<ModelPet> findByfiltro(@Param("especie") String especie,
                                 @Param("idade") Integer idade,
-                                @Param("porte") String port,
+                                @Param("porte") String porte,
                                 @Param("condicao") String condicao );
                                 
     List<ModelPet> findAllByDisponivel(boolean Disponivel);

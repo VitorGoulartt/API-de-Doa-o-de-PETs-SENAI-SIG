@@ -3,8 +3,7 @@ package adocao.controller;
 
 import java.util.List;
 
- 
-
+import org.apache.catalina.connector.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -93,5 +92,12 @@ public class ControllerCadastroPe {
         List<ModelPet> pets = servicePet.ListarPetsDisponiveis();
         return ResponseEntity.ok(pets);
     }
+
+    @GetMapping("/especie/{IdEspecie}")
+    public ResponseEntity<List<ModelPet>> ListaPetsEsp(@PathVariable int IdEspecie ){
+        List<ModelPet> Especie = servicePet.listarPetsEsp(IdEspecie);
+        return ResponseEntity.ok(Especie);
+    }
+    
 
 }

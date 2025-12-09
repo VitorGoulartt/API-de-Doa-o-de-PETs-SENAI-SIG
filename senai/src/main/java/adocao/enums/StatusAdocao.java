@@ -1,4 +1,4 @@
-package adocao.models;
+package adocao.enums;
 
 public enum StatusAdocao {
     DISPONIVEL,
