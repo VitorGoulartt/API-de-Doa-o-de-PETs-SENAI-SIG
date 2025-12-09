@@ -12,5 +12,8 @@ public interface RepositoryAdocao extends JpaRepository<ModelAdocao, Integer> {
 
     List<ModelAdocao> findAllByAdotanteId(Integer fk_adotante);
 
+    List<ModelAdocao> findAllByDoadorId(Integer fk_doador);
+    List<ModelAdocao> findByPetId(Integer fk_pet);
+
 
 }
