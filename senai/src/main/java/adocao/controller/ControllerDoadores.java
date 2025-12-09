@@ -17,7 +17,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import adocao.models.ModelDoador;
+import adocao.models.ModelLogin;
 import adocao.models.ModelPet;
+import adocao.service.ServiceDoador;
 import ch.qos.logback.core.model.Model;
 
 
@@ -45,8 +47,8 @@ public class ControllerDoadores {
     }
 
     @PostMapping("/{IdLogin}")
-    public ResponseEntity<NodelLogin> registrarDoador (@PathVariable int IdLogin){
-        ModelLogin doador = serviceDoador.registrarDoador(IdLogin);
+    public ResponseEntity<ModelDoador> registrarDoador (@PathVariable int IdLogin){
+        ModelDoador doador = serviceDoador.registrarDoador(IdLogin);
         if(doador != null){
             return ResponseEntity.status(HttpStatus.CREATED).body(doador);
         }

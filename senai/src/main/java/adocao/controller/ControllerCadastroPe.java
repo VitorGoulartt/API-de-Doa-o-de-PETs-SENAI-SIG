@@ -50,13 +50,13 @@ public class ControllerCadastroPe {
         return ResponseEntity.ok(pets);
     }
 
-    @GetMapping("/filtroPets")
-    public ResponseEntity<List<ModelPet>> ListarPetFiltro(@RequestParam(required = false) String especie,
-                                                          @RequestParam(required = false) Integer idade,
+    @GetMapping("/filtro?porte=&sexo=&cor=&vacinado=")
+    public ResponseEntity<List<ModelPet>> ListarPetFiltro(@RequestParam(required = false) String cor,
+                                                          @RequestParam(required = false) Integer sexo,
                                                           @RequestParam(required = false ) String porte,
-                                                          @RequestParam(required = false) String condicao){
+                                                          @RequestParam(required = false) String vacinado){
 
-    List<ModelPet> pets = servicePet.ListarPetFiltro(especie, idade, porte, condicao);
+    List<ModelPet> pets = servicePet.ListarPetFiltro(cor, sexo, porte, vacinado);
     return ResponseEntity.ok(pets);
     }
 
