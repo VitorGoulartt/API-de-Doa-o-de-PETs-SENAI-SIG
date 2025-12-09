@@ -94,8 +94,8 @@ public class ControllerCadastroPe {
     }
 
     @GetMapping("/especie/{IdEspecie}")
-    public ResponseEntity<List<ModelPet>> ListaPetsEsp(@PathVariable int IdEspecie ){
-        List<ModelPet> Especie = servicePet.listarPetsEsp(IdEspecie);
+    public ResponseEntity<List<ModelPet>> ListaPetsEsp(@PathVariable List<Integer> IdEspecie ){
+        List<ModelPet> Especie = servicePet.ListarPetsEsp(IdEspecie);
         return ResponseEntity.ok(Especie);
     }
     
