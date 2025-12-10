@@ -1,6 +1,5 @@
 package adocao.models;
 
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -13,25 +12,18 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "logins")
+@Table(name = "especie")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class ModelLogin {
+public class ModelEspecie {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue( strategy = GenerationType.IDENTITY)
     private int id;
 
     @Column
-    private String  usuario;
-    @Column
-    private String Email;
-    @Column
-    private String telefone;
-    @Column
-    private String senha;
-
+    private String nome_especie;
 
 }

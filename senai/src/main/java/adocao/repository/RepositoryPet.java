@@ -25,4 +25,6 @@ public interface RepositoryPet extends JpaRepository<ModelPet, Integer>{
                                 
     List<ModelPet> findAllByDisponivel(boolean Disponivel);
 
+    List<ModelPet> findPetsByDoadorId(int doadorId);
+
 }
