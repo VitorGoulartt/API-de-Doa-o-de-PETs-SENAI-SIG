@@ -1,6 +1,6 @@
 package adocao.controller;
 
-import javax.naming.AuthenticationException;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -25,12 +25,13 @@ public class ControllerLogin {
 
     @PostMapping("/login")
     public ResponseEntity<?>  authenticateUser(@RequestBody AuthRequestDTO request){
-        try{
-            String jwtToken = serviceLogin.login(request.getEmail(),  request.getSenha());
-            return ResponseEntity.ok(jwtToken);
-        } catch (AuthenticationException e){
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        String token = serviceLogin.login(request.getEmail(),  request.getSenha());
+        if(token != null){
+            return ResponseEntity.ok(token);
+
         }
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        
 
     }
 

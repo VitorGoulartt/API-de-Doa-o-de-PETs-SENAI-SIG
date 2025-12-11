@@ -1,11 +1,11 @@
 package adocao.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.security.autoconfigure.SecurityProperties.User;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import adocao.config.JwtUtil;
+import adocao.models.ModelLogin;
 import adocao.repository.RepositoryLogin;
 
 @Service
@@ -18,7 +18,18 @@ public class ServiceLogin {
     private JwtUtil jwtUtil;
 
     public String login(String email, String senha){
-        User user = repositoryLogin.findByEmail(email);
+        ModelLogin login = repositoryLogin.findByEmail(email);
+
+        if(login != null && passowrdEncoder.matches(senha, login.getSenha())){
+            return jwtUtil.generateToken(email);
+
+        } else{
+            return null;
+        }
+
+
+
+
         
 
     }

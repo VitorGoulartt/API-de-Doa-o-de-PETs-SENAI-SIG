@@ -20,8 +20,8 @@ import adocao.service.ServiceAdocao;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 
 @CrossOrigin
-@RestController("/api/adocoes")
-@RequestMapping
+@RestController
+@RequestMapping("/api/adocoes")
 public class ControllerAdocaoPet {
 
     @Autowired

@@ -7,5 +7,6 @@ import adocao.models.ModelLogin;
 
 @Repository
 public interface RepositoryLogin extends JpaRepository<ModelLogin, Integer> {
+    ModelLogin  findByEmail(String email);
 
 }

@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import adocao.enums.Disponibilidade;
 import adocao.models.ModelPet;
 import adocao.repository.RepositoryPet;
 
@@ -42,7 +43,7 @@ public class ServicePet {
             petNovo.setPorte(pet.getPorte());
             petNovo.setDescricao(pet.getDescricao());
             petNovo.setVacinas(pet.getVacinas());
-            petNovo.setDisponivel(pet.getDisponivel());
+            petNovo.setDisponibilidade(pet.getDisponibilidade());
            
            
             return repositoryPet.save(petNovo);
@@ -54,7 +55,7 @@ public class ServicePet {
         Optional<ModelPet> pet = repositoryPet.findById(id);
         if(pet.isPresent()){
             ModelPet petAdotado = pet.get();
-            petAdotado.setDisponivel(false);
+            petAdotado.setDisponibilidade(Disponibilidade.Adotado);
 
             return repositoryPet.save(petAdotado);
         }

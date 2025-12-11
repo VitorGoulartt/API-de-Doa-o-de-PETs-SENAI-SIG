@@ -2,8 +2,11 @@ package adocao.models;
 
 import java.time.LocalDateTime;
 
-import org.hibernate.annotations.ManyToAny;
 
+
+import adocao.enums.Disponibilidade;
+import adocao.enums.Porte;
+import adocao.enums.Sexo;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -49,13 +52,13 @@ public class ModelPet {
     private Disponibilidade disponibilidade;
 
     @Column
-    private String foto;
+    private String fotos;
 
     @Column
     private String cor;
 
     @Column
-    private String porte;
+    private Porte porte;
 
     @Column
     private String descricao;
@@ -72,8 +75,7 @@ public class ModelPet {
     @Column
     private String castrado;
 
-    @Column
-    private boolean disponivel;
+    
 
     @PrePersist
     protected void onCreate() {
@@ -82,15 +84,6 @@ public class ModelPet {
     }
     
 
-   public boolean getDisponivel() {
-        return disponivel;
-    }
-
-    public void setDisponivel(boolean disponivel) {
-        this.disponivel = disponivel;
-    }
-
-    public int getId() {
-        return id;
-    }
+   
+    
 }
