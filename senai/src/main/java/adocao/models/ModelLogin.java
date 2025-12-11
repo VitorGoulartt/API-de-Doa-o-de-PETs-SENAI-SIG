@@ -27,7 +27,7 @@ public class ModelLogin {
     @Column
     private String  usuario;
     @Column
-    private String Email;
+    private String email;
     @Column
     private String telefone;
     @Column
