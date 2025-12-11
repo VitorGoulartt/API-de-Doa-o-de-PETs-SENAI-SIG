@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: meu-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: vitor123
+      MYSQL_DATABASE: pet_att
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: admin321
+    ports:
+     - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+     - minha_rede
+volumes:
+  mysql_data:
+    driver: local
+networks:
+  minha_rede:
+    driver: bridge

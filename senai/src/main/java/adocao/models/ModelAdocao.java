@@ -8,7 +8,9 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -27,17 +29,17 @@ public class ModelAdocao {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id; 
 
-    @OneToMany
-    @Column()
-    private ModelPet fk_pet;
+    @ManyToOne 
+    @JoinColumn(name = "fk_pet", referencedColumnName = "id")
+    private ModelPet pet;
 
-    @OneToMany
-    @Column
-    private ModelAdotante fk_adotante; 
+    @ManyToOne
+    @JoinColumn(name = "fk_adotante",  referencedColumnName = "id")
+    private ModelAdotante adotante; 
 
-    @OneToMany
-    @Column
-    private  ModelDoador fk_doador;
+    @ManyToOne
+    @JoinColumn(name = "fk_doador", referencedColumnName = "id")
+    private  ModelDoador doador;
     
     @Column
     private String dt_adocao;

@@ -1,5 +1,7 @@
 package adocao.models;
 
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -31,10 +33,10 @@ public class ModelAdotante {
     @Column
     private String telefone;
 
-    @Column
+    @Column 
     private String email;
 
-    @OneToMany
-    private ModelPet petAdotados;
+   @OneToMany(mappedBy = "adotante") 
+    private List<ModelAdocao> Adocoes;
 
 }
