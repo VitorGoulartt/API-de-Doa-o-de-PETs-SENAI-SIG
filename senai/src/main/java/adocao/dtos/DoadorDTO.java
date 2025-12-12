@@ -2,8 +2,13 @@ package adocao.dtos;
 
 import java.time.LocalDateTime;
 
+import lombok.*;
 
 
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class DoadorDTO {
     
     private Integer id;

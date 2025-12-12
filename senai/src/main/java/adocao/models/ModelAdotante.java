@@ -2,6 +2,8 @@ package adocao.models;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -37,6 +39,7 @@ public class ModelAdotante {
     private String email;
 
    @OneToMany(mappedBy = "adotante") 
+   @JsonIgnore
     private List<ModelAdocao> Adocoes;
 
 }

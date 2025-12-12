@@ -2,7 +2,6 @@ package adocao.dtos;
 
 import adocao.enums.StatusAdocao;
 
-
 import lombok.*;
 
 @Getter
@@ -34,5 +33,6 @@ public class AdocaoDTO {
 
     private StatusAdocao StatusAdocao;
 
+    
 
 }

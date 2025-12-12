@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import adocao.dtos.AdocaoDTO;
 import adocao.models.ModelAdocao;
 import adocao.service.ServiceAdocao;
 
@@ -40,15 +41,15 @@ public class ControllerAdocaoPet {
     }
     
 
-    @GetMapping
-    public ResponseEntity<List<ModelAdocao>> listarAdocoes(){
-        List<ModelAdocao> adocao = serviceAdocao.listarAdocoes();
+    @GetMapping("/listar")
+    public ResponseEntity<List<AdocaoDTO>> listarAdocoes(){
+        List<AdocaoDTO> adocao = serviceAdocao.listarAdocoes();
         return ResponseEntity.ok(adocao);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ModelAdocao>  listarAdocaoId(@PathVariable int id){
-        ModelAdocao adocao = serviceAdocao.ProcurarAdocaoId(id);
+    public ResponseEntity<AdocaoDTO>  listarAdocaoId(@PathVariable int id){
+        AdocaoDTO adocao = serviceAdocao.ProcurarAdocaoId(id);
         if(adocao != null){
             return ResponseEntity.ok(adocao);
         }
@@ -67,29 +68,29 @@ public class ControllerAdocaoPet {
 
     @DeleteMapping("/{id}")
         public ResponseEntity<Void> deletarAdocao(@PathVariable int id){
-        ModelAdocao adocao = serviceAdocao.ProcurarAdocaoId(id);
-        if(adocao != null){
+        
+        
             serviceAdocao.deletarAdocao(id);
             return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
-        }
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        
     }
 
-    @GetMapping("/adotante/{idAdotante}")
-    public ResponseEntity<List<ModelAdocao>> listarAdocoesPorAdotante(@PathVariable int idAdotante){
-        List<ModelAdocao> adocoes = serviceAdocao.listarAdocoesPorAdotante(idAdotante);
+    @GetMapping("/doador/{idDoador}")
+    public ResponseEntity<List<AdocaoDTO>> listarAdocoesPorDoador(@PathVariable int idDoador){
+        // Agora chama corretamente: Service de Doador com ID de Doador
+        List<AdocaoDTO> adocoes = serviceAdocao.listarAdocoesPorAdotante(idDoador);
         return ResponseEntity.ok(adocoes);
     }
     
-    @GetMapping("/doador/{idDoador}")
-    public ResponseEntity<List<ModelAdocao>> listarAdocoesPorDoador(@PathVariable int idDoador){
-        List<ModelAdocao> adocoes = serviceAdocao.listarAdocoesPorDoador(idDoador);
+    @GetMapping("/pet/{idPet}")
+    public ResponseEntity<List<AdocaoDTO>> listarAdocoesPorPet(@PathVariable int idPet){
+        List<AdocaoDTO> adocoes = serviceAdocao.listarAdocoesPorDoador(idPet);
         return ResponseEntity.ok(adocoes);
     }
 
-    @GetMapping("/pet/{idPet}")
-    public ResponseEntity<List<ModelAdocao>> listarAdocoesPorPet(@PathVariable int idPet){
-        List<ModelAdocao> adocoes = serviceAdocao.listarAdocoesPorPet(idPet);
+    @GetMapping("/adotante/{idAdotante}")
+    public ResponseEntity<List<AdocaoDTO>> listarAdocoesPorAdotante(@PathVariable int idAdotante){
+        List<AdocaoDTO> adocoes = serviceAdocao.listarAdocoesPorPet(idAdotante);
         return ResponseEntity.ok(adocoes);  
     }
 

@@ -1,8 +1,10 @@
 package adocao.models;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
-
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import adocao.enums.Disponibilidade;
 import adocao.enums.Porte;
@@ -16,6 +18,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -85,6 +88,9 @@ public class ModelPet {
     @JoinColumn(name = "doador_id")
     private ModelDoador doador;
 
+    @OneToMany(mappedBy = "pet") 
+    @JsonBackReference
+    private List<ModelAdocao> adocoes;
     
 
     @PrePersist
