@@ -57,8 +57,8 @@ public class ServiceDoador {
         return null;
     }
 
-    public List<ModelPet> listarPetsDoados(int idDoador){
-        List<ModelPet> pet = repositoryPet.findPetsByDoadorId(idDoador);
+    public List<ModelPet> listarPetsDoados(int id){
+        List<ModelPet> pet = repositoryPet.findPetsByDoador_Id(id);
         return pet;
     }
 

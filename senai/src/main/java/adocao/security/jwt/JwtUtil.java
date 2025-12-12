@@ -1,4 +1,4 @@
-package adocao.config;
+package adocao.security.jwt;
 
 
 import io.jsonwebtoken.Jwts;

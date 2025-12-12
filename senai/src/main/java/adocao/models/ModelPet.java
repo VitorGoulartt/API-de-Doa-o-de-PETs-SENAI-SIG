@@ -9,6 +9,8 @@ import adocao.enums.Porte;
 import adocao.enums.Sexo;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -31,7 +33,7 @@ public class ModelPet {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
     @Column
     private String nome;
@@ -47,9 +49,11 @@ public class ModelPet {
     private int idade;
     
     @Column
+     @Enumerated(EnumType.STRING)
     private Sexo sexo;
 
     @Column
+     @Enumerated(EnumType.STRING)
     private Disponibilidade disponibilidade;
 
     @Column
@@ -59,6 +63,7 @@ public class ModelPet {
     private String cor;
 
     @Column
+     @Enumerated(EnumType.STRING)
     private Porte porte;
 
     @Column
@@ -76,6 +81,10 @@ public class ModelPet {
     @Column
     private String castrado;
 
+    @ManyToOne
+    @JoinColumn(name = "doador_id")
+    private ModelDoador doador;
+
     
 
     @PrePersist
@@ -84,7 +93,7 @@ public class ModelPet {
         
     }
     
-
+ 
    
     
 }

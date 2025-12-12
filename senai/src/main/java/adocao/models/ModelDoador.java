@@ -41,13 +41,13 @@ public class ModelDoador {
     private String email;
 
     @Column
-    private LocalDateTime dt_registro;
+    private java.sql.Date dt_registro;
 
     @Column
-    private LocalDateTime dt_update;
+    private java.sql.Date dt_update;
 
     @Column
-    private String dt_nasciemnto;
+    private java.sql.Date dt_nasciemnto;
     
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "fk_login", nullable = false)

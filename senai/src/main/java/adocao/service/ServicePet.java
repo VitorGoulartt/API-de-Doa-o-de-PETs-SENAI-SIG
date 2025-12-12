@@ -26,7 +26,7 @@ public class ServicePet {
         return pet;
     }
     public List<ModelPet> ListarPetFiltro(String especie, Integer idade, String porte, String condicao){
-        List<ModelPet> pet = repositoryPet.findByfiltro(especie, idade, porte, condicao);
+        List<ModelPet> pet = repositoryPet.filtrarPets(especie, idade, porte, condicao);
         if(pet != null){
             return pet;
         }
@@ -74,7 +74,7 @@ public class ServicePet {
     
     }
     public List<ModelPet> ListarPetsDisponiveis(){
-        List<ModelPet> pet = repositoryPet.findAllByDisponivel(true);
+        List<ModelPet> pet = repositoryPet.findAllByDisponibilidade(Disponibilidade.Disponível);
         return pet;
         
     }

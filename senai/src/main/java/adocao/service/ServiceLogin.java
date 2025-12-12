@@ -4,9 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import adocao.config.JwtUtil;
 import adocao.models.ModelLogin;
 import adocao.repository.RepositoryLogin;
+import adocao.security.jwt.JwtUtil;
 
 @Service
 public class ServiceLogin {

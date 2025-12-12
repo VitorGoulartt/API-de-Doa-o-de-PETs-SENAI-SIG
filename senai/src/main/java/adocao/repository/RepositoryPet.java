@@ -7,24 +7,24 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import adocao.enums.Disponibilidade;
 import adocao.models.ModelPet;
 
 @Repository
 public interface RepositoryPet extends JpaRepository<ModelPet, Integer>{
 
-    @Query("SELECT p FROM ModelPet p" + 
-        "WHERE (:especie IS NULL OR LOWER(p.especie) LIKE LOWER(CONCAT('%', :especie, '%'))" +
-        "AND (:idade IS NULL  OR p.idade = :idade)" +
-        "AND (:porte  IS NULL  OR p.porte = :porte)" +
-        "AND (:condicao IS NULL  OR p.condicao = :condicao)" 
-    )
-    List<ModelPet> findByfiltro(@Param("especie") String especie,
-                                @Param("idade") Integer idade,
-                                @Param("porte") String porte,
-                                @Param("condicao") String condicao );
+  @Query("SELECT p FROM ModelPet p WHERE " +
+           "(:sexo IS NULL OR p.sexo = :sexo) AND " +
+           "(:vacinas IS NULL OR p.vacinas = :vacinas) AND " +
+           "(:cor IS NULL OR p.cor LIKE %:cor%) AND " +
+           "(:porte IS NULL OR p.porte = :porte)")
+    List<ModelPet> filtrarPets(@Param("cor") String cor,
+                                @Param("sexo") Integer sexo,
+                                @Param("porte") String porte, 
+                                @Param("vacinas") String vacinas );
                                 
-    List<ModelPet> findAllByDisponivel(boolean Disponivel);
+    List<ModelPet> findAllByDisponibilidade(Disponibilidade Disponibilidade);
 
-    List<ModelPet> findPetsByDoadorId(int doadorId);
+    List<ModelPet> findPetsByDoador_Id(Integer Id);
 
 }
