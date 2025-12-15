@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import adocao.dtos.AdocaoDTO;
 import adocao.dtos.DoadorDTO;
 import adocao.models.ModelDoador;
 
@@ -74,8 +75,8 @@ public class ControllerDoadores {
     }
 
     @GetMapping("/{id}/pets")
-    public ResponseEntity<List<DoadorDTO>> listarPetsDoados(@PathVariable int id){
-        List<DoadorDTO> pets = serviceDoador.listarPetsDoados(id);
+    public ResponseEntity<List<AdocaoDTO>> listarPetsDoados(@PathVariable int id){
+        List<AdocaoDTO> pets = serviceDoador.listarPetsDoados(id);
         
         if(pets != null ){
             return ResponseEntity.ok(pets);   

@@ -111,6 +111,8 @@
 							<version>1.18.30</version> 
 						</path>
 					</annotationProcessorPaths>
+					<fork>true</fork>
+                	<executable>/usr/local/sdkman/candidates/java/17.0.17-ms/bin/javac</executable>
 				</configuration>
 			</plugin>
 			<plugin>

@@ -2,12 +2,12 @@ package adocao.service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Service;
 
+import adocao.dtos.AdocaoDTO;
 import adocao.dtos.DoadorDTO;
 import adocao.mapper.mapperDoador;
 import adocao.models.ModelDoador;
@@ -27,6 +27,9 @@ public class ServiceDoador {
 
     @Autowired
     private mapperDoador mapper;
+
+    @Autowired
+    private ServiceAdocao serviceAdocao;
 
   
     
@@ -61,11 +64,8 @@ public class ServiceDoador {
         return null;
     }
 
-    public List<DoadorDTO> listarPetsDoados(int id){
-        List<ModelDoador> pet = repositoryDoador.findPetsByDoador_Id(id);
-        return pet.stream()
-        .map(mapper::toDto)
-        .collect(Collectors.toList());
+    public List<AdocaoDTO> listarPetsDoados(int id){
+       return serviceAdocao.listarAdocoesPorDoador(id);
     }
 
 }

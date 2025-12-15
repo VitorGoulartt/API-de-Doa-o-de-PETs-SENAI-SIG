@@ -91,6 +91,7 @@ public class ServicePet {
         
     }
     public List<PetDTO> ListarPetsEsp(List<Integer> id){
+        
         List<ModelPet> especie = repositoryPet.findAllById(id);
         return especie.stream()
         .map(mapper::toDto)
