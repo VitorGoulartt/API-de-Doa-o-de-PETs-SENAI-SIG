@@ -2,36 +2,40 @@ package adocao.service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Service;
 
+import adocao.dtos.DoadorDTO;
+import adocao.mapper.mapperDoador;
 import adocao.models.ModelDoador;
 import adocao.models.ModelLogin;
-import adocao.models.ModelPet;
 import adocao.repository.RepositoryDoador;
 import adocao.repository.RepositoryLogin;
-import adocao.repository.RepositoryPet;
 import jakarta.transaction.Transactional;
 
 @Service
 public class ServiceDoador {
-    @Autowired
-    private RepositoryPet repositoryPet;
+ 
 
     @Autowired
     private RepositoryDoador repositoryDoador;
     @Autowired
     private RepositoryLogin repositoryLogin;
 
-    ServiceDoador(RepositoryPet repositoryPet) {
-        this.repositoryPet = repositoryPet;
-    }
+    @Autowired
+    private mapperDoador mapper;
 
-    public ModelDoador buscarDoadorId(int id){
+  
+    
+
+    public DoadorDTO buscarDoadorId(int id){
        Optional<ModelDoador> doador = repositoryDoador.findById(id);
-        return doador.orElse(null);
+
+       Optional<DoadorDTO> doadorDto = doador.map(mapper::toDto);
+        return doadorDto.orElse(null);
     }
 
     @Transactional
@@ -45,7 +49,7 @@ public class ServiceDoador {
 
     }
     public ModelDoador atualizarDoador(ModelDoador doador, int id){
-        ModelDoador doadorN = buscarDoadorId(id);
+        DoadorDTO doadorN = buscarDoadorId(id);
         if(doadorN != null){
             doador.setNome(doadorN.getNome());
             doador.setCpf(doadorN.getCpf());
@@ -57,9 +61,11 @@ public class ServiceDoador {
         return null;
     }
 
-    public List<ModelPet> listarPetsDoados(int id){
-        List<ModelPet> pet = repositoryPet.findPetsByDoador_Id(id);
-        return pet;
+    public List<DoadorDTO> listarPetsDoados(int id){
+        List<ModelDoador> pet = repositoryDoador.findPetsByDoador_Id(id);
+        return pet.stream()
+        .map(mapper::toDto)
+        .collect(Collectors.toList());
     }
 
 }

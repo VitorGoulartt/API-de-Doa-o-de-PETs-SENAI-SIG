@@ -16,9 +16,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import adocao.dtos.DoadorDTO;
 import adocao.models.ModelDoador;
 
-import adocao.models.ModelPet;
 import adocao.service.ServiceDoador;
 
 
@@ -32,13 +32,13 @@ public class ControllerDoadores {
     private ServiceDoador serviceDoador;
 
     @GetMapping
-    public ResponseEntity<List<ModelDoador>> listarDoadores(){
+    public ResponseEntity<List<DoadorDTO>> listarDoadores(){
         return ResponseEntity.ok().build();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ModelDoador> buscaDoadorId(@PathVariable int id){
-        ModelDoador doador = serviceDoador.buscarDoadorId(id);
+    public ResponseEntity<DoadorDTO> buscaDoadorId(@PathVariable int id){
+        DoadorDTO doador = serviceDoador.buscarDoadorId(id);
         if(doador != null){
             return ResponseEntity.ok(doador);
         }
@@ -66,7 +66,7 @@ public class ControllerDoadores {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletarDoador(@PathVariable int id){
-        ModelDoador doador = serviceDoador.buscarDoadorId(id);
+        DoadorDTO doador = serviceDoador.buscarDoadorId(id);
         if(doador != null){
             return ResponseEntity.status(HttpStatus.OK).body(null);
         }
@@ -74,8 +74,8 @@ public class ControllerDoadores {
     }
 
     @GetMapping("/{id}/pets")
-    public ResponseEntity<List<ModelPet>> listarPetsDoados(@PathVariable int id){
-        List<ModelPet> pets = serviceDoador.listarPetsDoados(id);
+    public ResponseEntity<List<DoadorDTO>> listarPetsDoados(@PathVariable int id){
+        List<DoadorDTO> pets = serviceDoador.listarPetsDoados(id);
         
         if(pets != null ){
             return ResponseEntity.ok(pets);   

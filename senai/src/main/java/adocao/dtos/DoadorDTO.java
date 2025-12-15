@@ -1,6 +1,6 @@
 package adocao.dtos;
 
-import java.time.LocalDateTime;
+
 
 import lombok.*;
 
@@ -26,15 +26,15 @@ public class DoadorDTO {
     private String email;
 
 
-    private LocalDateTime dt_registro;
+    private java.sql.Date  dt_registro;
 
 
-    private LocalDateTime dt_update;
+    private java.sql.Date  dt_update;
 
 
-    private java.sql.Date dt_nasciemnto;
+    private java.sql.Date dt_nascimento;
     
     
-    private Integer fk_login;
+   
 
 }

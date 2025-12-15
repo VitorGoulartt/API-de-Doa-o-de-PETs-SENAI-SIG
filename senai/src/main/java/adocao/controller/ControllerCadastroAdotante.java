@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import adocao.dtos.AdotanteDTO;
 import adocao.models.ModelAdotante;
 import adocao.service.ServiceAdotante;
 
@@ -39,16 +40,16 @@ public class ControllerCadastroAdotante {
 
 
     @GetMapping
-    public ResponseEntity<List<ModelAdotante>> listarAdotantes(){
-        List<ModelAdotante> adotantes = serviceAdotante.listarAdotantes();
+    public ResponseEntity<List<AdotanteDTO>> listarAdotantes(){
+        List<AdotanteDTO> adotantes = serviceAdotante.listarAdotantes();
         return ResponseEntity.ok(adotantes);
 
 
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ModelAdotante> listarAdotantesId(@PathVariable int id){
-        ModelAdotante adotantes = serviceAdotante.listarAdotantesId(id);
+    public ResponseEntity<AdotanteDTO> listarAdotantesId(@PathVariable int id){
+        AdotanteDTO adotantes = serviceAdotante.listarAdotantesId(id);
         return ResponseEntity.ok(adotantes);
     }
 
@@ -64,7 +65,7 @@ public class ControllerCadastroAdotante {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletarAdotante(@PathVariable int id){
-        ModelAdotante adotante = serviceAdotante.listarAdotantesId(id);
+        AdotanteDTO adotante = serviceAdotante.listarAdotantesId(id);
         if(adotante != null){
             return ResponseEntity.status(HttpStatus.OK).body(null);
         }

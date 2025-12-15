@@ -2,10 +2,13 @@ package adocao.service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import adocao.dtos.EspecieDTO;
+import adocao.mapper.mapperEspecie;
 import adocao.models.ModelEspecie;
 import adocao.repository.RepositoryEspecie;
 
@@ -14,20 +17,27 @@ public class ServiceEspecie {
     @Autowired
     private RepositoryEspecie repositoryEspecie;
 
-    public List<ModelEspecie> listarEspecies(){
+    @Autowired
+    private mapperEspecie mapper;
+
+    public List<EspecieDTO> listarEspecies(){
         List<ModelEspecie> especie = repositoryEspecie.findAll();
 
-        return especie;
+        return especie.stream()
+        .map(mapper::toDto)
+        .collect(Collectors.toList());
     }
-    public ModelEspecie buscarEspecieId(int id){
+    public EspecieDTO buscarEspecieId(int id){
         Optional<ModelEspecie> especie = repositoryEspecie.findById(id);
-        return especie.orElse(null);
+
+        Optional<EspecieDTO> especieDto = especie.map(mapper::toDto);
+        return especieDto.orElse(null);
     }
 
     public ModelEspecie cadastrarEspecie(ModelEspecie especie){
-        ModelEspecie especieN = repositoryEspecie.save(especie);
+         
         if(especie != null){
-            return especieN;
+            return repositoryEspecie.save(especie);
 
         }
         return null;

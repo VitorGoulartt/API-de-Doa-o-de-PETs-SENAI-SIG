@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import adocao.dtos.PetDTO;
 import adocao.models.ModelPet;
 import adocao.service.ServicePet;
 
@@ -29,6 +30,8 @@ public class ControllerCadastroPe {
 
     @Autowired
     private ServicePet servicePet;
+
+    
 
     @PostMapping
     public ResponseEntity<ModelPet> RegistrarPet(@RequestBody ModelPet pet){
@@ -46,18 +49,18 @@ public class ControllerCadastroPe {
     }
 
     @GetMapping
-    public ResponseEntity<List<ModelPet>> ListarPets(){
-        List<ModelPet> pets = servicePet.ListarPets();
+    public ResponseEntity<List<PetDTO>> ListarPets(){
+        List<PetDTO> pets = servicePet.ListarPets();
         return ResponseEntity.ok(pets);
     }
 
     @GetMapping("/filtro?porte=&sexo=&cor=&vacinado=")
-    public ResponseEntity<List<ModelPet>> ListarPetFiltro(@RequestParam(required = false) String cor,
+    public ResponseEntity<List<PetDTO>> ListarPetFiltro(@RequestParam(required = false) String cor,
                                                           @RequestParam(required = false) Integer sexo,
                                                           @RequestParam(required = false ) String porte,
                                                           @RequestParam(required = false) String vacinado){
 
-    List<ModelPet> pets = servicePet.ListarPetFiltro(cor, sexo, porte, vacinado);
+    List<PetDTO> pets = servicePet.ListarPetFiltro(cor, sexo, porte, vacinado);
     return ResponseEntity.ok(pets);
     }
 
@@ -89,14 +92,14 @@ public class ControllerCadastroPe {
     }
 
     @GetMapping("/disponiveis")
-    public ResponseEntity<List<ModelPet>> ListarPetsDisponiveis(){
-        List<ModelPet> pets = servicePet.ListarPetsDisponiveis();
+    public ResponseEntity<List<PetDTO>> ListarPetsDisponiveis(){
+        List<PetDTO> pets = servicePet.ListarPetsDisponiveis();
         return ResponseEntity.ok(pets);
     }
 
     @GetMapping("/especie/{IdEspecie}")
-    public ResponseEntity<List<ModelPet>> ListaPetsEsp(@PathVariable List<Integer> IdEspecie ){
-        List<ModelPet> Especie = servicePet.ListarPetsEsp(IdEspecie);
+    public ResponseEntity<List<PetDTO>> ListaPetsEsp(@PathVariable List<Integer> IdEspecie ){
+        List<PetDTO> Especie = servicePet.ListarPetsEsp(IdEspecie);
         return ResponseEntity.ok(Especie);
     }
     

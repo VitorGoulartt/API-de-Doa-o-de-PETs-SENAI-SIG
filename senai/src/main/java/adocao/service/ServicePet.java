@@ -2,11 +2,14 @@ package adocao.service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import adocao.dtos.PetDTO;
 import adocao.enums.Disponibilidade;
+import adocao.mapper.mapperPet;
 import adocao.models.ModelPet;
 import adocao.repository.RepositoryPet;
 
@@ -15,20 +18,27 @@ public class ServicePet {
     @Autowired
     private RepositoryPet repositoryPet;
 
+    @Autowired
+    private mapperPet mapper;
+
     public ModelPet RegistrarPet(ModelPet pet){
         if(pet != null){
             return repositoryPet.save(pet);
         }
         return null;
     }
-    public List<ModelPet> ListarPets(){
+    public List<PetDTO> ListarPets(){
         List<ModelPet> pet = repositoryPet.findAll();
-        return pet;
+        return pet.stream()
+        .map(mapper::toDto)
+        .collect(Collectors.toList());
     }
-    public List<ModelPet> ListarPetFiltro(String especie, Integer idade, String porte, String condicao){
+    public List<PetDTO> ListarPetFiltro(String especie, Integer idade, String porte, String condicao){
         List<ModelPet> pet = repositoryPet.filtrarPets(especie, idade, porte, condicao);
         if(pet != null){
-            return pet;
+            return pet.stream()
+            .map(mapper::toDto)
+            .collect(Collectors.toList());
         }
         return null;
     }
@@ -73,14 +83,18 @@ public class ServicePet {
         return null;
     
     }
-    public List<ModelPet> ListarPetsDisponiveis(){
+    public List<PetDTO> ListarPetsDisponiveis(){
         List<ModelPet> pet = repositoryPet.findAllByDisponibilidade(Disponibilidade.Disponível);
-        return pet;
+        return pet.stream()
+        .map(mapper::toDto)
+        .collect(Collectors.toList());
         
     }
-    public List<ModelPet> ListarPetsEsp(List<Integer> id){
+    public List<PetDTO> ListarPetsEsp(List<Integer> id){
         List<ModelPet> especie = repositoryPet.findAllById(id);
-        return especie;
+        return especie.stream()
+        .map(mapper::toDto)
+        .collect(Collectors.toList());
     }
         
         

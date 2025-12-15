@@ -1,6 +1,5 @@
 package adocao.models;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -30,7 +29,7 @@ public class ModelDoador {
 
     @Id
     @GeneratedValue( strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
     @Column
     private String nome;
@@ -51,7 +50,7 @@ public class ModelDoador {
     private java.sql.Date dt_update;
 
     @Column
-    private java.sql.Date dt_nasciemnto;
+    private java.sql.Date dt_nascimento;
 
     @OneToMany(mappedBy = "doador")
     @JsonIgnore 

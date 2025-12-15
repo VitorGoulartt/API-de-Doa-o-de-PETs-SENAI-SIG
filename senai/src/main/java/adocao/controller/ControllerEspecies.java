@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import adocao.dtos.EspecieDTO;
 import adocao.models.ModelEspecie;
 import adocao.service.ServiceEspecie;
 
@@ -26,16 +27,16 @@ public class ControllerEspecies {
     private ServiceEspecie serviceEspecie;
 
     @GetMapping
-    public ResponseEntity<List<ModelEspecie>> listarEspecies(){
-        List<ModelEspecie> especie = serviceEspecie.listarEspecies();
+    public ResponseEntity<List<EspecieDTO>> listarEspecies(){
+        List<EspecieDTO> especie = serviceEspecie.listarEspecies();
 
         return ResponseEntity.ok(especie);
 
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ModelEspecie> buscarEspecieId(@PathVariable int id){
-        ModelEspecie especie = serviceEspecie.buscarEspecieId(id);
+    public ResponseEntity<EspecieDTO> buscarEspecieId(@PathVariable int id){
+        EspecieDTO especie = serviceEspecie.buscarEspecieId(id);
         if(especie != null){
             return ResponseEntity.ok(especie);
         }
@@ -62,7 +63,7 @@ public class ControllerEspecies {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletarEspecie(@PathVariable int id){
-        ModelEspecie especie = serviceEspecie.buscarEspecieId(id);
+        EspecieDTO especie = serviceEspecie.buscarEspecieId(id);
         if(especie != null){
             serviceEspecie.deletarEspecie(id);
             return ResponseEntity.status(HttpStatus.NO_CONTENT).build();

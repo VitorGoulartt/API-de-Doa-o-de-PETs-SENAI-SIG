@@ -9,7 +9,7 @@ import adocao.models.ModelAdocao;
 public class mapperAdocao {
 
     public AdocaoDTO toDto(ModelAdocao adocao) {
-        // Lógica de conversão manual
+       
         return new AdocaoDTO(
             adocao.getId(),
             adocao.getPet().getId(),
@@ -23,4 +23,6 @@ public class mapperAdocao {
 
         );
     }
+
+    
 }
