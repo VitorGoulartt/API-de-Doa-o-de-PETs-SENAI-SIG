@@ -34,6 +34,30 @@ public class ServiceAdotante {
         .collect(Collectors.toList());
     }
 
+    public ModelAdotante atualizarAdotante(ModelAdotante adotante, int id){
+        Optional<ModelAdotante> adotanteId = repositoryAdotante.findById(id);
+        if(adotanteId.isPresent()){
+            ModelAdotante adotanteNovo = adotanteId.get();
+            if(adotante.getNome() != null){
+                adotanteNovo.setNome(adotante.getNome());
+            }
+            if(adotante.getEmail() != null){
+                adotanteNovo.setNome(adotante.getEmail());
+            }
+            if(adotante.getTelefone() != null){
+                adotanteNovo.setTelefone(adotante.getTelefone());
+            }
+            return repositoryAdotante.save(adotanteNovo);
+        }
+        return null;
+
+    }
+
+    public void deletarAdotante(int id){
+        repositoryAdotante.deleteById(id);
+        
+    }
+
     public AdotanteDTO listarAdotantesId(int id){
         
         Optional<ModelAdotante> adotante = repositoryAdotante.findById(id);

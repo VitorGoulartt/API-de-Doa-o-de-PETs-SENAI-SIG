@@ -2,7 +2,6 @@ package adocao.controller;
 
 import java.util.List;
 
-import org.springframework.http.MediaType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,7 +28,7 @@ public class ControllerAdocaoPet {
     @Autowired
     private ServiceAdocao serviceAdocao;
 
-    @PostMapping(consumes = {MediaType.APPLICATION_JSON_VALUE, "application/json;charset=UTF-8"})
+    @PostMapping
     public ResponseEntity<ModelAdocao> fazerAdocao(@RequestBody ModelAdocao adocao){
         ModelAdocao adocaoPet = serviceAdocao.adotarPet(adocao);
 
@@ -77,7 +76,7 @@ public class ControllerAdocaoPet {
 
     @GetMapping("/doador/{idDoador}")
     public ResponseEntity<List<AdocaoDTO>> listarAdocoesPorDoador(@PathVariable int idDoador){
-        // Agora chama corretamente: Service de Doador com ID de Doador
+       
         List<AdocaoDTO> adocoes = serviceAdocao.listarAdocoesPorAdotante(idDoador);
         return ResponseEntity.ok(adocoes);
     }

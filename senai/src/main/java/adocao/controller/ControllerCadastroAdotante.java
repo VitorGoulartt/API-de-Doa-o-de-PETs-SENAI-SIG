@@ -53,9 +53,9 @@ public class ControllerCadastroAdotante {
         return ResponseEntity.ok(adotantes);
     }
 
-    @PutMapping
-    public ResponseEntity<ModelAdotante> atualizarAdotante(@RequestBody ModelAdotante adotante){
-        ModelAdotante adotantes = serviceAdotante.registrarAdotante(adotante);
+    @PutMapping("/{id}")
+    public ResponseEntity<ModelAdotante> atualizarAdotante(@PathVariable int id, @RequestBody ModelAdotante adotante){
+        ModelAdotante adotantes = serviceAdotante.atualizarAdotante(adotante, id);
         if(adotantes != null){
             return ResponseEntity.status(HttpStatus.OK).body(adotantes);
         }
@@ -65,10 +65,9 @@ public class ControllerCadastroAdotante {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletarAdotante(@PathVariable int id){
-        AdotanteDTO adotante = serviceAdotante.listarAdotantesId(id);
-        if(adotante != null){
-            return ResponseEntity.status(HttpStatus.OK).body(null);
-        }
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        serviceAdotante.deletarAdotante(id);
+        
+     return ResponseEntity.status(HttpStatus.OK).build();
+        
     }
 }

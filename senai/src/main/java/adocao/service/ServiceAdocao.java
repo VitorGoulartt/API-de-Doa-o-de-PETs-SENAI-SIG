@@ -55,14 +55,28 @@ public class ServiceAdocao {
 
     public ModelAdocao atualizarAdocao(ModelAdocao adocao, int id){
         Optional<ModelAdocao> adocaoN = repositoryAdocao.findById(id);
-        if(adocaoN.isPresent()){
-            ModelAdocao adocaoD = adocaoN.get();
-            adocao.setStatusAdocao(adocaoD.getStatusAdocao());
-            adocao.setMotivo_adotante(adocaoD.getMotivo_adotante());
-            adocao.setOBSERVACOES(adocaoD.getOBSERVACOES());
-            return repositoryAdocao.save(adocao);
+        if (adocaoN.isPresent()) {
+        ModelAdocao adocaoBD = adocaoN.get();
+
+        // Só atualiza se o campo enviado no JSON não for nulo
+        if (adocao.getStatusAdocao() != null) {
+            adocaoBD.setStatusAdocao(adocao.getStatusAdocao());
         }
-        return null;
+        
+        if (adocao.getMotivo_adotante() != null) {
+            adocaoBD.setMotivo_adotante(adocao.getMotivo_adotante());
+        }
+
+        if (adocao.getOBSERVACOES() != null) {
+            adocaoBD.setOBSERVACOES(adocao.getOBSERVACOES());
+        }
+
+        
+        return repositoryAdocao.save(adocaoBD);
+     }
+    
+     return null;
+
     }
 
     public ModelAdocao deletarAdocao(int id){

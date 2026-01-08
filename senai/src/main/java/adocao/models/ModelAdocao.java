@@ -1,6 +1,5 @@
 package adocao.models;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import adocao.enums.StatusAdocao;
 import jakarta.persistence.Column;
@@ -33,7 +32,6 @@ public class ModelAdocao {
 
     @ManyToOne 
     @JoinColumn(name = "fk_pet", referencedColumnName = "id")
-    @JsonManagedReference
     private ModelPet pet;
 
     @ManyToOne
