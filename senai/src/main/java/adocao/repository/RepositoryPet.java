@@ -8,6 +8,8 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import adocao.enums.Disponibilidade;
+import adocao.enums.Porte;
+import adocao.enums.Sexo;
 import adocao.models.ModelPet;
 
 @Repository
@@ -16,11 +18,11 @@ public interface RepositoryPet extends JpaRepository<ModelPet, Integer>{
   @Query("SELECT p FROM ModelPet p WHERE " +
            "(:sexo IS NULL OR p.sexo = :sexo) AND " +
            "(:vacinas IS NULL OR p.vacinas = :vacinas) AND " +
-           "(:cor IS NULL OR p.cor LIKE %:cor%) AND " +
+           "(:cor IS NULL OR p.cor LIKE CONCAT('%', :cor, '%')) AND " +
            "(:porte IS NULL OR p.porte = :porte)")
     List<ModelPet> filtrarPets(@Param("cor") String cor,
-                                @Param("sexo") Integer sexo,
-                                @Param("porte") String porte, 
+                                @Param("sexo") Sexo sexo,
+                                @Param("porte") Porte porte, 
                                 @Param("vacinas") String vacinas );
                                 
     List<ModelPet> findAllByDisponibilidade(Disponibilidade Disponibilidade);

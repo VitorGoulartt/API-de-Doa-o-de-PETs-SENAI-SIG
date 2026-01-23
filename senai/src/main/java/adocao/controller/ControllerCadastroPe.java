@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import adocao.dtos.PetDTO;
+import adocao.enums.Porte;
+import adocao.enums.Sexo;
 import adocao.models.ModelPet;
 import adocao.service.ServicePet;
 
@@ -51,14 +53,16 @@ public class ControllerCadastroPe {
     @GetMapping
     public ResponseEntity<List<PetDTO>> ListarPets(){
         List<PetDTO> pets = servicePet.ListarPets();
-        return ResponseEntity.ok(pets);
+        return ResponseEntity.ok(pets); 
     }
 
-    @GetMapping("/filtro?porte=&sexo=&cor=&vacinado=")
+    @GetMapping("/filtro")  
     public ResponseEntity<List<PetDTO>> ListarPetFiltro(@RequestParam(required = false) String cor,
-                                                          @RequestParam(required = false) Integer sexo,
-                                                          @RequestParam(required = false ) String porte,
+                                                          @RequestParam(required = false) Sexo sexo,
+                                                          @RequestParam(required = false ) Porte porte,
                                                           @RequestParam(required = false) String vacinado){
+    
+                                      
 
     List<PetDTO> pets = servicePet.ListarPetFiltro(cor, sexo, porte, vacinado);
     return ResponseEntity.ok(pets);

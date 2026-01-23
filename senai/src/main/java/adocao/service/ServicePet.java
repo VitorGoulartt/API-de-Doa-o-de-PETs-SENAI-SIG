@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 
 import adocao.dtos.PetDTO;
 import adocao.enums.Disponibilidade;
+import adocao.enums.Porte;
+import adocao.enums.Sexo;
 import adocao.mapper.mapperPet;
 import adocao.models.ModelPet;
 import adocao.repository.RepositoryPet;
@@ -33,14 +35,14 @@ public class ServicePet {
         .map(mapper::toDto)
         .collect(Collectors.toList());
     }
-    public List<PetDTO> ListarPetFiltro(String especie, Integer idade, String porte, String condicao){
-        List<ModelPet> pet = repositoryPet.filtrarPets(especie, idade, porte, condicao);
-        if(pet != null){
-            return pet.stream()
-            .map(mapper::toDto)
-            .collect(Collectors.toList());
-        }
-        return null;
+    public List<PetDTO> ListarPetFiltro(String especie, Sexo sexo, Porte porte, String vacinas){
+        List<ModelPet> pet = repositoryPet.filtrarPets(especie, sexo, porte, vacinas);
+        
+        return pet.stream()
+               .map(mapper::toDto)
+               .collect(Collectors.toList());
+        
+        
     }
     public ModelPet AtualizarPet(int id, ModelPet pet){
         Optional<ModelPet> pets = repositoryPet.findById(id);
